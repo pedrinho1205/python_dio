@@ -20,7 +20,7 @@ dict.fromkeys(["nome", "telefone"])  # cria dicionario com valores padrões
 # se ele nao encontrar a chave ele retorna none e nao da erro
 contatos.get("chave")
 
-print(contatos.items())  # retorna uma lista de tuplas com as chave se valores
+print(contatos.items())  # retorna uma lista de tuplas com as chaves e valores
 
 print(contatos.keys())  # retorna as chaves do dicionario
 
@@ -53,5 +53,6 @@ for chave in contatos:
 
 print(contatos.update(
     {"guilherme@gmail.com": {"nome": "Guilherme", "idade": 28}}))
+
 for chave in contatos:
     print(chave, contatos[chave])
