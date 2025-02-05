@@ -1,0 +1,60 @@
+sites importantes:
+jsonformatter
+cloud.mongodb
+
+banco de dados nao relacional: termo correto é NOT ONLY SQL
+não seguem modelo de tabelas e relacionamentos, projetados para lidar com alto volume de dados, alta escalabilidade
+ele é mais amplo, possui alta flexibilidade na estrutura de dados
+eles sao amplamente utilizados em cenarios onde a consistencia imediata dos dados nao é crítica
+
+Comparação Geral
+Característica	Relacional (SQL)	Não Relacional (NoSQL)
+Estrutura	    Tabelas	            Documentos, chave-valor, grafos, colunar
+Linguagem	    SQL	                Varia conforme o banco
+Escalabilidade	Vertical (aumenta hardware)	Horizontal (mais servidores)
+Consistência	Alta (ACID)	        Eventual, dependendo do tipo
+Flexibilidade	Baixa	            Alta
+
+vantagens do NoSQL
+flexibilidade na modelagem;
+alta escalabilidade;
+melhor desempenho em cenário de consulta intensiva;
+tolerância a falhas;
+
+desvantagens do NoSQL:
+menor consistencia de dados imediata;
+menor suporte a consultas complexas ** depende do SGBD;
+
+tipos de NoSQL: key-value (armazena dados como par de chave e valor), documento (armazena dados em documentos semiestruturados, geralmente em formato Json ou Bson), coluna (armazenado em colunas), grafos (armazenar e consultar dados interconectados, onde o srelacionamentos entre os dados sao tao importantes quanto os proprios dados)
+depende do SGBD utilizado
+
+coleções: agrupamento lógico de documentos;
+não exige esquema ou que os documentos tenham a mesma estrutura
+
+documentos: representação da informação que a gente esta salvando;
+sao armazenados em documento BSON(Binary JSON);
+cada documento possui um identificador único chamado "_id";
+é composto por pares de chaves e valores;
+
+modelagem de dados orientada por consultas: a modelagem de dados no MongoDB deve ser orientada 
+pelas consultas que serão realizadas com mais frequência 
+
+inner documents: no mongodb é comum desnormalizar os dados para evitar operações de junção (join) custosas.
+Isso significa que os dados relacionados podem ser armazenados juntos em um único documento, em vez de serem distribuídos em várias coleções.
+
+documento usuario:
+{
+  "_id": 1,
+  "nome": "Pedro Augusto",
+  "idade": 19,
+  "data_nascimento": "2005-12-19",
+  "endereco": [
+    {
+      "logradouro": "rua dos funcionarios municipai",
+      "numero": 58,
+      "bairro": "cohab 1",
+      "cidade": "São Miguel Arcanjo"
+    }
+  ],
+  "interesses": ["kart", "culinaria"]
+}

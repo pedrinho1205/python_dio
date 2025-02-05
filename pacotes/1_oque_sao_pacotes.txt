@@ -1,0 +1,12 @@
+pacotes são módulos que podem ser instalados e utilizados nos programas 
+permitem a utilização de código escrito por outras pessoas
+pip é o gerenciador de pacotes do python, ele instala, atualiza e remove pacotes facilmente
+ele se comunica com o PyPI, que armazena vários pacotes de maneira pública. para acessar basta entrar no site PyPi.org
+ambientes virtuais: nos permitem manter as dependências de diferentes projetos, isso é importante para evitar conflitos entre versões de pacotes
+por exemplo: em 2 projetos diferentes, vc usa diferentes versões do django, e toda vez que alterna entre os projetos precisa instalar e desinstalar denovo
+por isso se usa ambientes virtuais
+para se criar um ambiente virtual deve-se usar o comando: python -m venv .env 
+e depois: source .env/bin/activate 
+o pipenv fornece melhor gerenciamento de pacotes e dependências no python, otimizando o uso de ambientes virtuais, uma vez que o pip não desinstala as dependências (bibliotecas que vem junto com os pacotes) dos pacotes 
+ele cria um arquivo chamado Pipfile, onde se armazenam informações sobre os pacotes e sobre as dependências
+além do pip e do pipenv, existe o poetry, uma ferramenta que também auxilia no controle de dependencias e pacotes, é o concorrente do pipenv

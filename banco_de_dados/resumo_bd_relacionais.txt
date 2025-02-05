@@ -1,0 +1,103 @@
+banco de dados: coleção de dados organizada
+
+tipos de banco de dados: relacionais, não relacionais, orientado a objetos e hierarquico
+
+funcionalidades basicas SGBD:
+Create, Read, Update e Delete -> CRUD
+
+chave primaria: são os identificadores unicos
+chave estrangeira: sinaliza que existe um relacionamento entre as informações da tabela, é usada para estabelecer relações entre as tabelas
+é um campo em uma tabela que corresponde à chave primaria da outra tabela
+
+sql: permite comunicação com o banco de dados
+
+criador de DER, diagramas de entidades relacionais: creately
+
+relacionamentos: representam as associações entre as entidades descreve como elas se relacionam entre si 
+
+cardinalidade: relacionamento 1..1(um para um)
+relacionamento 1..n ou 1..*(um para muitos)
+relacionamento n..n ou *..*(muitos para muitos)
+
+ia que cria diagramas: https://app.quickdatabasediagrams.com/
+site para gerenciar banco de dados: https://clients.cloudclusters.io/
+
+inserção em massa:
+INSERT INTO usuarios_nova (id, nome, email, endereco, data_nascimento) SELECT id, nome, email, endereco, data_nascimento FROM usuarios;
+esse comando insere na tabela usuarios_nova todos os registros da tabela usuarios
+
+alterar coluna: ALTER TABLE usuarios MODIFY COLUMN endereco VARCHAR(150);
+ALTER TABLE usuarios RENAME novo_nome;
+
+alterar registro:
+UPDATE usuarios SET email = 'pedro@gmail.com' WHERE email ='teste@teste';
+
+criar tabela:
+CREATE TABLE usuarios(
+		id INT,
+		nome VARCHAR(255) NOT NULL COMMENT 'nome do usuario',
+		email VARCHAR(100) NOT NULL UNIQUE COMMENT 'email do usuario',
+		endereco VARCHAR(50) NOT NULL COMMENT 'endereco do usuario',
+		data_nascimento DATE NOT NULL COMMENT 'data de nascimento do usuario'
+);
+
+chave primaria (PK): é um atributo ou um conjunto de atributos que identifica de forma exclusiva cada registro de nossa tabela, garantindo a integridade dos registros
+visto que não permite que se repitam
+
+chave estrangeira (FK): usada para estabelecer e manter a integridade dos dados entre as tabelas relacionadas, é possivel ter mais de uma (ou nenhuma) em uma tabela,
+na maioria das vezes representa a PK da tabela que esta relacionada
+comando de criação da FK: FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
+
+restrições chave estrangeira: a mais comum é a ON DELETE CASCADE, que ao excluir o pai exclui os filhos tambem sao excluidos, por exemplo, um usuario é excluido
+logo a reserva que estava associada a ele tambem é excluida
+comando: ALTER TABLE reservas ADD CONSTRAINT fk_reservas_usuarios FOREIGN KEY(id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE;
+
+normalização de dados: é um processo pelo qual se organiza e estrutura um banco de dados relacional de maneira a eliminar redundancias e anomalias
+garantindo a consistencia e integridade dos dados
+
+existem 6 padroes de formas normais para normalização dos dados, mas apenas 3 são mais comuns
+
+as 3 principais formas normais:
+1FN: garante que cada valor seja atômico (nao divisivel) e que os registros sejam unicos e identificaveis
+2FN: garante que os atributos nao chave dependam totalmente da chave primária (por completo), evitando dependências parciais
+3FN: elimina dependências transitivas entre os atributos nao chave, 
+garantindo que cada atributo nao chave dependa apenas da chave primaria, não havendo dependências
+indiretas entre eles
+
+junções: joins
+são usadas no SQL para combinar dados de duas tabelas relacionadas em uma única consulta
+INNER JOIN: retorna apenas as linhas que tem correspondencia em ambas as tabelas envolvidas na junção, ou seja, os dados que tem em comum entre as tabelas (intersecção)
+exemplo: SELECT * FROM usuarios us INNER JOIN reservas rs ON us.id = rs.id_usuario;
+Isso significa que serão retornados apenas os usuários que possuem pelo menos uma reserva registrada.
+
+LEFT JOIN: retorna todas as linhas da tabela À esquerda da junção e as linha correspondentes da tabela à direita
+Se não houver correspondencia, os valores da tabela à direita serão NULL, ou seja, retorna todos valores da tabela da esquerda,
+e todos os valores que nao possuem relação entre as tabelas ficam preenchidos como NULL.
+
+RIGHT JOIN: basicamente é o oposto de LEFT JOIN
+
+FULL JOIN: é utilizado para retornar todos os registros das duas tabelas, mesmo que não haja correspondência entre as chaves
+
+sub consultas: elas permitem realizar consultas mais complexas permitindo que voce use o resultado de uma consulta como entrada para outra consulta.
+SELECT * FROM destinos WHERE id NOT IN(SELECT id_destino FROM reservas)
+seleciona todos os registros onde o id da tabela destinos não esta presente na tabela reservas, ou seja, pega os destinos sem nenhuma reserva
+
+funções agregadas: são funções que realizam um tipo de pré-processamento ou calculo nas nossas colunas retornando um único valor
+SELECT COUNT(*) as total_usuarios FROM usuarios;
+conta todos os usuarios e retorna na coluna total_usuarios
+
+agrupamento de resultados: usado para que a gente consiga dividir os dados em grupos de acordo com o tipo de critério
+SELECT COUNT(*), id_destino FROM reservas GROUP BY id_destino;
+conta o número de reservas para cada destino distinto na tabela reservas
+
+ordenação de resultados: ordena os dados
+SELECT COUNT(*) AS qtd_reservas, id_destino FROM reservas GROUP BY id_destino ORDER BY qtd_reservas;
+ordenando a coluna qtd_reservas
+
+indices de busca: são estrutura de dados que aceleram as pesquisas e a recuperação de informações dos nossos bancos de dados
+análise do plano de execução: ela nos permite examinar as operações realizadas, as tabelas acessadas, os índices utilizados e outras informações
+importantes para identificar possíveis melhorias de desempenho. O comando que retorna essa análise é o EXPLAIN
+
+criação de indice:
+CREATE INDEX idx_nome ON usuarios(nome);
+cria um indice na coluna nome

@@ -13,13 +13,13 @@ class Pessoa:
         idade = 2025 - ano_nascimento  # retorna uma nova instancia da classe
         return cls(nome, idade)
 
-    @staticmethod
+    @staticmethod  # método estático
     def e_maior_idade(idade):
         return idade >= 18
 
 
-p = Pessoa.criar_a_partir_ano_nascimento("Guilherme", 2005)
+p = Pessoa.criar_a_partir_ano_nascimento("Guilherme", 2005)  # método de classe
 print(p.nome, p.idade)
 
-print(Pessoa.e_maior_idade(18))
+print(Pessoa.e_maior_idade(18))  # método estático
 print(Pessoa.e_maior_idade(8))

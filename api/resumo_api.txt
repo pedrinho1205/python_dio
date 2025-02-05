@@ -1,0 +1,36 @@
+API (Interface de Programação de Aplicações) é um conjunto de regras e definições que permite que diferentes sistemas e aplicativos se comuniquem entre si. 
+Basicamente, uma API define como um software pode interagir com outro, seja para enviar, receber ou manipular dados.
+ela pega os pedidos do front end e envia para o back end de forma padronizada, ou seja, ela padroniza as requisições de diferentes aplicações.
+ela funciona como um intermediário permitindo que pedidos sejam feitos e respostas sejam recebidas entre diferentes sistemas de software.
+
+Como Funcionam:
+O cliente faz uma requisição HTTP para a API.
+A API processa e acessa os dados no servidor.
+A API retorna uma resposta (geralmente em JSON ou XML).
+
+existem 3 principais tipos de api's web: Restful, Soap e GraphQL
+
+Restful: refere-se a APIs que seguem os princípios do REST (Representational State Transfer). São baseadas em padrões HTTP e utilizadas para interações web
+uso dos métodos HTTP (GET, POST, PUT, DELETE) para operações crud, é facil de entender e implementar
+
+Soup: (Simple Object Access Protocol) é um protocolo que define um padrão para a troca de mensagens baseada em XML.
+Protocolo baseado em XML para troca de informações,
+independente de linguagem e plataforma de transporte,
+suporte para operações complexas e segurança avançada
+
+GraphQL: uma linguagem de consulta para sua API, e um servidor capaz de executar essas consultas, retornando apenas os dados especificados
+Permite que os clientes especifiquem exatamente quais dados querem,
+Eficiente na redução de solicitações e no tamanho dos dados transferidos,
+flexível e fortemente tipada, facilitando a evolução das suas APIs
+
+escolhendo o tipo certo de API: a escolha depende de necessidades específicas.
+REstFul é popular pela simplicidade, SOAP é preferido para segurança e transações complexas, 
+enquanto GraphQL é ideal para aplicações que requerem dados dinâmicos personalizados
+
+verbos HTTP: em APIs REstFul os verbos HTTP têm papeis especificos que se alinham com as operações CRUD.
+Esta abordagem padronizada permite que as APIssejam intuitivas e previsíveis, facilitando a interação entre diferentes sistemas e aplicações
+
+convenções Restful: GET para leitura, POST para criação, PUT/PATCH para atualização e DELETE para remoção (verbos HTTP)
+Essas convenções são fundamentais para o design de uma API RESTful bem projetada
+
+

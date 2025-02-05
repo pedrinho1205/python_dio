@@ -1,0 +1,3 @@
+flake8: ferramenta de checagem de estilo, observando se tudo esta de acordo com a PEP 8
+black: ferramenta de formatação automática de código, deixando tudo de acordo com a PEP 8
+isort: ferramenta para classificar imports alfabeticamente e em seções 
